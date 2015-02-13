@@ -195,7 +195,7 @@ public class picViewerGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //Create a file chooser
     public JFileChooser fc = new JFileChooser();
-    public ArrayList<JLabel> addImageInPanel = new ArrayList<JLabel>();
+    public ArrayList<JLabel> addImageInPanel = new ArrayList<>();
     private void browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseActionPerformed
         // TODO add your handling code here:
         //Handle open button action.
@@ -219,10 +219,9 @@ public class picViewerGUI extends javax.swing.JFrame {
                         System.out.println("file.getName(): " + fileEntry.getName());
                         //System.out.println("---------: " + addImageInPanel[i].getText());
                     }
-                    for(int i = 0; i < addImageInPanel.size(); i++)
-                    {
-                       PanelImage.add(addImageInPanel.get(i));
-                    }  
+                    addImageInPanel.stream().forEach((addImageInPanel1) -> {
+                        PanelImage.add(addImageInPanel1);
+                    });  
                     image.setText(file.getName());
                 }
                
@@ -268,10 +267,8 @@ public class picViewerGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new picViewerGUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new picViewerGUI().setVisible(true);
         });
     }
     
