@@ -232,7 +232,24 @@ public class picViewerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_browseActionPerformed
 
     private void addImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImageActionPerformed
-        // TODO add your handling code here:
+        // Code qui gère le bouton d'ajout d'images
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY );
+        int returnVal = fc.showOpenDialog(picViewerGUI.this);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                System.out.println("getCurrentDirectory(): " + fc.getCurrentDirectory());
+                System.out.println("getSelectedFile() : " + fc.getSelectedFile());
+                if(file.isFile())
+                {
+                    JLabel newLabel = new JLabel(file.getName());
+                    String chemin = "/ceri/prototypage/tp1/images/folder.gif";
+                    newLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource(chemin)));
+                    addImageInPanel.add(newLabel);
+                    PanelImage.add(addImageInPanel.get(addImageInPanel.size()-1));
+                    image.setText(file.getName());
+                    
+                }
+            }
     }//GEN-LAST:event_addImageActionPerformed
 
     private void modifyImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyImageActionPerformed
